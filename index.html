@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>My Site - Home</title>
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    }
+
+    body {
+      min-height: 100vh;
+      background: linear-gradient(135deg, #1e293b, #0f172a);
+      color: #e5e7eb;
+      display: flex;
+      flex-direction: column;
+    }
+
+    header {
+      padding: 18px 7%;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .logo {
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      font-size: 1rem;
+      text-transform: uppercase;
+      color: #e5e7eb;
+    }
+
+    nav a {
+      color: #9ca3af;
+      text-decoration: none;
+      margin-left: 16px;
+      font-size: 0.9rem;
+      position: relative;
+    }
+
+    nav a:hover {
+      color: #e5e7eb;
+    }
+
+    nav a::after {
+      content: "";
+      position: absolute;
+      left: 0;
+      bottom: -4px;
+      width: 0;
+      height: 2px;
+      background: #38bdf8;
+      transition: width 0.2s ease;
+    }
+
+    nav a:hover::after {
+      width: 100%;
+    }
+
+    .hero {
+      padding: 40px 7% 32px;
+      display: grid;
+      grid-template-columns: minmax(0, 3fr) minmax(0, 2fr);
+      gap: 40px;
+      align-items: center;
+    }
+
+    .hero-text h1 {
+      font-size: clamp(2.1rem, 3.2vw, 3rem);
+      line-height: 1.1;
+      margin-bottom: 12px;
+    }
+
+    .hero-text p {
+      max-width: 520px;
+      color: #9ca3af;
+      margin-bottom: 20px;
+      font-size: 0.98rem;
+    }
+
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      align-items: center;
+    }
+
+    .btn-primary,
+    .btn-secondary {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      padding: 10px 20px;
+      border-radius: 999px;
+      font-size: 0.92rem;
+      font-weight: 600;
+      cursor: pointer;
+      border: none;
+      text-decoration: none;
+      transition: transform 0.12s ease, box-shadow 0.12s ease, filter 0.12s ease;
+    }
+
+    .btn-primary {
+      background: linear-gradient(135deg, #38bdf8, #22c55e);
+      color: #0b1120;
+      box-shadow: 0 12px 25px rgba(15, 118, 110, 0.5);
+    }
+
+    .btn-primary:hover {
+      transform: translateY(-1px);
+      filter: brightness(1.05);
+      box-shadow: 0 18px 35px rgba(15, 118, 110, 0.7);
+    }
+
+    .btn-secondary {
+      background: rgba(15, 23, 42, 0.8);
+      color: #e5e7eb;
+      border: 1px solid #1f2937;
+    }
+
+    .btn-secondary:hover {
+      transform: translateY(-1px);
+      border-color: #38bdf8;
+    }
+
+    .hero-tagline {
+      font-size: 0.8rem;
+      color: #9ca3af;
+      margin-top: 6px;
+    }
+
+    .hero-highlight {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 4px 10px;
+      border-radius: 999px;
+      background-color: rgba(15, 23, 42, 0.9);
+      color: #e5e7eb;
+      font-size: 0.75rem;
+      margin-bottom: 10px;
+      border: 1px solid rgba(148, 163, 184, 0.35);
+    }
+
+    .dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 999px;
+      background-color: #22c55e;
+      box-shadow: 0 0 0 4px rgba(34, 197, 94, 0.25);
+    }
+
+    .hero-visual {
+      border-radius: 18px;
+      padding: 20px;
+      background: radial-gradient(circle at top left, rgba(56, 189, 248, 0.3) 0, transparent 55%),
+                  radial-gradient(circle at bottom right, rgba(34, 197, 94, 0.25) 0, transparent 60%),
+                  #020617;
+      border: 1px solid rgba(15, 23, 42, 0.9);
+      box-shadow: 0 24px 60px rgba(0, 0, 0, 0.55);
+    }
+
+    .hero-visual h2 {
+      font-size: 1.05rem;
+      margin-bottom: 8px;
+    }
+
+    .hero-visual p {
+      font-size: 0.88rem;
+      color: #cbd5f5;
+      margin-bottom: 16px;
+    }
+
+    .hero-stats {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 12px;
+      font-size: 0.85rem;
+    }
+
+    .stat-card {
+      background: rgba(15, 23, 42, 0.85);
+      border-radius: 12px;
+      padding: 10px 12px;
+      border: 1px solid rgba(15, 23, 42, 0.9);
+    }
+
+    .stat-label {
+      color: #9ca3af;
+      font-size: 0.75rem;
+      margin-bottom: 4px;
+    }
+
+    .stat-number {
+      font-size: 1.1rem;
+      font-weight: 600;
+    }
+
+    .features {
+      padding: 14px 7% 32px;
+    }
+
+    .features-title {
+      font-size: 1rem;
+      margin-bottom: 12px;
+    }
+
+    .feature-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 16px;
+    }
+
+    .feature-card {
+      background: rgba(15, 23, 42, 0.9);
+      border-radius: 14px;
+      padding: 14px 14px 16px;
+      border: 1px solid #111827;
+      font-size: 0.9rem;
+    }
+
+    .feature-card h3 {
+      font-size: 0.95rem;
+      margin-bottom: 6px;
+    }
+
+    .feature-card p {
+      color: #9ca3af;
+      font-size: 0.86rem;
+    }
+
+    footer {
+      padding: 12px 7% 18px;
+      font-size: 0.78rem;
+      color: #9ca3af;
+      margin-top: auto;
+      border-top: 1px solid rgba(15, 23, 42, 0.9);
+    }
+
+    @media (max-width: 800px) {
+      .hero {
+        grid-template-columns: 1fr;
+        padding-top: 28px;
+      }
+      header {
+        padding-inline: 5%;
+      }
+      .hero, .features, footer {
+        padding-inline: 5%;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="logo">My Website</div>
+    <nav>
+      <a href="index.html">Home</a>
+      <a href="contact.html">Contact</a>
+    </nav>
+  </header>
+
+  <section class="hero">
+    <div class="hero-text">
+      <div class="hero-highlight">
+        <span class="dot"></span>
+        <span>Simple, fast, and modern</span>
+      </div>
+      <h1>Welcome to your clean and modern homepage</h1>
+      <p>
+        This example shows how a basic HTML page can look polished using only a bit of CSS for layout, color, and spacing.
+      </p>
+      <div class="hero-actions">
+        <a href="contact.html" class="btn-primary">
+          <span>Contact us</span>
+          <span>➜</span>
+        </a>
+        <a href="#features" class="btn-secondary">See features</a>
+      </div>
+      <p class="hero-tagline">No frameworks, just HTML and CSS.</p>
+    </div>
+
+    <div class="hero-visual">
+      <h2>Small project, big impact</h2>
+      <p>Use this layout as a starting point for portfolios, product pages, or simple business sites.</p>
+      <div class="hero-stats">
+        <div class="stat-card">
+          <div class="stat-label">Lines of HTML</div>
+          <div class="stat-number">~50</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-label">Lines of CSS</div>
+          <div class="stat-number">~130</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-label">Time to build</div>
+          <div class="stat-number">&lt; 1 hr</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-label">Frameworks</div>
+          <div class="stat-number">0</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="features" class="features">
+    <h2 class="features-title">What you get</h2>
+    <div class="feature-grid">
+      <article class="feature-card">
+        <h3>Responsive layout</h3>
+        <p>The grid collapses nicely on smaller screens so the page stays readable on phones and tablets.</p>
+      </article>
+      <article class="feature-card">
+        <h3>Reusable styles</h3>
+        <p>Buttons, cards, and sections share the same design language as your contact page.</p>
+      </article>
+      <article class="feature-card">
+        <h3>Easy to customize</h3>
+        <p>Change colors, fonts, and text to adapt this layout to any project you are working on.</p>
+      </article>
+    </div>
+  </section>
+
+  <footer>
+    &copy; 2025 My Website. Built with plain HTML and CSS.
+  </footer>
+</body>
+</html>
